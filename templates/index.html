@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background: #4CAF50;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 14px 20px;
+        }
+        .container {
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px 0px grey;
+            border-radius: 10px;
+            width: 60%;
+            min-height: 300px;
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            box-shadow: 0px 0px 10px grey;
+            border-radius: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: auto;
+        }
+        .product-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px;
+            white-space: nowrap;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 0px 5px grey;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .card img {
+            width: 100%;
+            height: 300px;
+            border-radius: 5px;
+        }
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .scroll-left {
+            left: 10px;
+        }
+        .scroll-right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Plant Disease Detection</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <label>Select an image:</label>
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Upload & Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result-container">
+                <h3>Prediction: {{ prediction }}</h3>
+                <img src="{{ image_path }}" alt="Uploaded Image" width="300">
+            </div>
+        {% endif %}
+    </div>
+
+    <button class="scroll-btn scroll-left" onclick="scrollLeft()">❮</button>
+    <div class="product-slider">
+        <div class="card">
+            <img src="static\copper-fungicide.jpg" alt="Insecticide">
+            <h4>Insecticide</h4>
+            <p>Protects plants from harmful insects.</p>
+        </div>
+        <div class="card">
+            <img src="static\ferti.png" alt="Plant Nutrients">
+            <h4>Plant Nutrients</h4>
+            <p>Enhances plant health and immunity.</p>
+        </div>
+        <div class="card">
+            <img src="static\neem_oil.jpg" alt="Neem Oil">
+            <h4>Neem Oil</h4>
+            <p>Natural solution for pest control.</p>
+        </div>
+        <div class="card">
+            <img src="static\porganic_com1.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+        <div class="card">
+            <img src="static\org_002.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+        <div class="card">
+            <img src="static\org_003.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+        <div class="card">
+            <img src="static\org_004.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+        <div class="card">
+            <img src="static\org_002.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+        <div class="card">
+            <img src="static\org_002.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+        <div class="card">
+            <img src="static\org_004.jpg" alt="Compost">
+            <h4>Organic Compost</h4>
+            <p>Improves soil health and plant growth.</p>
+        </div>
+    </div>
+    <button class="scroll-btn scroll-right" onclick="scrollRight()">❯</button>
+
+    <script>
+        function scrollLeft() {
+            document.querySelector(".product-slider").scrollBy({ left: -300, behavior: 'smooth' });
+        }
+        function scrollRight() {
+            document.querySelector(".product-slider").scrollBy({ left: 300, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
